@@ -1,7 +1,10 @@
 import React from "react";
 import "./Home.css";
 import photographer from "../../assets/photographer.jpg";
+import { Link, useLoaderData } from "react-router-dom";
+import Service from "../../components/Service/Service";
 const Home = () => {
+  const services = useLoaderData();
   return (
     <div>
       <div className="min-h-screen homebg my-10 rounded-3xl overflow-hidden">
@@ -33,6 +36,17 @@ const Home = () => {
             animals and natural scenery.
           </p>
         </div>
+      </div>
+
+      <div className="flex flex-col">
+        <div className="grid grid-cols-1 lg:grid-cols-3 my-3 p-5 gap-5 justify-items-center">
+          {services.map((service) => (
+            <Service key={service._id} service={service} />
+          ))}
+        </div>
+        <Link className="btn w-80 mx-auto" to="/services">
+          See All
+        </Link>
       </div>
     </div>
   );

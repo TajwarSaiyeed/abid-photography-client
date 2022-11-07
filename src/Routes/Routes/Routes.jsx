@@ -6,6 +6,12 @@ export const routes = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
-    children: [{ path: "/", element: <Home /> }],
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+        loader: () => fetch("http://localhost:5000/services"),
+      },
+    ],
   },
 ]);
