@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Service from "../../components/Service/Service";
 
 const Services = () => {
@@ -12,6 +12,9 @@ const Services = () => {
           <Service key={service._id} service={service} />
         ))}
       </div>
+      <Link className="btn w-80 mx-auto" to="/">
+        Home
+      </Link>
     </div>
   );
 };
