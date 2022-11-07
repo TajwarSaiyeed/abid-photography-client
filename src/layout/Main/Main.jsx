@@ -4,7 +4,7 @@ import Navbar from "../../pages/shared/Navbar/Navbar";
 
 const Main = () => {
   return (
-    <div className="px-20 py-3 bg-slate-300">
+    <div className="px-5 lg:px-20 py-3 bg-slate-300">
       <Navbar />
       <Outlet></Outlet>
     </div>
