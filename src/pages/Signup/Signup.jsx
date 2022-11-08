@@ -1,13 +1,30 @@
-import React from "react";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+
+const provider = new GoogleAuthProvider();
 const Signup = () => {
+  const { googleLoginSignin } = useContext(AuthContext);
+
+  const handleGoogleSignup = () => {
+    googleLoginSignin(provider)
+      .then(() => {
+        toast.success("user succesfully signup ");
+      })
+      .catch((err) => toast.error(err.message));
+  };
   return (
     <div className="min-h-screen my-5 flex flex-col items-center justify-center bg-slate-200 rounded-2xl">
       <h1 className="font-bold text-2xl my-5 uppercase">
         Sign up to Abid PhotoGraphy
       </h1>
-      <button className="btn bg-blue-600 border-none">
+      <button
+        onClick={handleGoogleSignup}
+        className="btn bg-blue-600 border-none"
+      >
         <FcGoogle className="bg-white rounded-full p-1 w-6 h-6" /> &nbsp; Sign
         up with Google
       </button>

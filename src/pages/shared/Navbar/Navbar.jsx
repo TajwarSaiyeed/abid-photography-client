@@ -1,11 +1,17 @@
 import React, { useContext } from "react";
+import toast from "react-hot-toast";
 import { FaUserTie } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
+  const logoutUser = () => {
+    logOut()
+      .then(() => toast.success("Logout Successful"))
+      .catch((err) => toast.error(err.message));
+  };
   return (
     <div>
       <div className="navbar h-20">
@@ -41,7 +47,7 @@ const Navbar = () => {
                     <a href="/">Settings</a>
                   </li>
                   <li>
-                    <a href="/">Logout</a>
+                    <button onClick={logoutUser}>Logout</button>
                   </li>
                 </>
               ) : (
