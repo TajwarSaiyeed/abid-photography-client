@@ -63,7 +63,7 @@ const Login = () => {
         <input
           type="submit"
           className="btn btn-outline btn-accent my-5 w-96"
-          value="register"
+          value="Login"
         />
         <div className="font-semibold text-xl">
           Dont't Have An Account?{" "}

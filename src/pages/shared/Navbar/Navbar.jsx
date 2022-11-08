@@ -21,7 +21,7 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div>
+        <div className="mr-2">
           <Link to="/" className="link">
             Home
           </Link>

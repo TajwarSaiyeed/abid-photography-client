@@ -25,7 +25,7 @@ const Footer = () => {
           Branding
         </a> */}
         {services.map((service) => (
-          <Link key={service._id} to={`/service/${service.name}`}>
+          <Link key={service._id} to={`/service/${service._id}`}>
             {service.name}
           </Link>
         ))}
