@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Service from "../../components/Service/Service";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Services = () => {
   const services = useLoaderData();
+  const { loading } = useContext(AuthContext);
+
+  if (loading) {
+    return (
+      <div className="flex w-full justify-center">
+        <button className="btn loading">loading</button>;
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col justify-center items-center mt-5">
       <h1 className="font-bold text-5xl">Services</h1>

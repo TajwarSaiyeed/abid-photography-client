@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Home.css";
 import photographer from "../../assets/photographer.jpg";
 import { Link, useLoaderData } from "react-router-dom";
 import Service from "../../components/Service/Service";
 import Contactme from "./Contactme";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 const Home = () => {
   const services = useLoaderData();
+  const { loading } = useContext(AuthContext);
+  if (loading) {
+    return (
+      <div className="flex w-full justify-center">
+        <button className="btn loading">loading</button>;
+      </div>
+    );
+  }
   return (
     <div>
       <div className="min-h-screen homebg my-10 rounded-3xl overflow-hidden">

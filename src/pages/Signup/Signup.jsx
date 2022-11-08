@@ -13,11 +13,16 @@ const Signup = () => {
   const [image, setImage] = useState(null);
   const [imgurl, setImgurl] = useState(null);
   const [downloadUrl, setDownloadUrl] = useState(null);
-  const imageListRef = ref(storage, "images/");
-  const { googleLoginSignin, update, createUserWithEmailPassword, user } =
-    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  const imageListRef = ref(storage, "images/");
+  const {
+    loading,
+    googleLoginSignin,
+    update,
+    createUserWithEmailPassword,
+    user,
+  } = useContext(AuthContext);
   const from = location.state?.from?.pathname || "/";
 
   const upload = () => {
@@ -29,7 +34,7 @@ const Signup = () => {
     const imageRef = ref(storage, imageSplit);
     // console.log("imageRef : ", imageRef);
     uploadBytes(imageRef, image).then(() => {
-      toast("image uploaded");
+      toast.success("image uploaded");
       setImgurl(imageSplit);
     });
   };
@@ -61,7 +66,7 @@ const Signup = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    const namephone = {
+    const namephoto = {
       displayName: name,
       photoURL: downloadUrl,
     };
@@ -69,14 +74,20 @@ const Signup = () => {
     createUserWithEmailPassword(email, password)
       .then(() => {
         toast.success("user succesfully signup ");
-        update(namephone)
+        update(namephoto)
           .then(() => {})
           .catch((err) => console.log(err));
         navigate(from, { replace: true });
       })
       .catch((err) => toast.error(err.message));
   };
-
+  if (loading) {
+    return (
+      <div className="flex w-full justify-center">
+        <button className="btn loading">loading</button>;
+      </div>
+    );
+  }
   if (user) {
     return <Navigate to="/"></Navigate>;
   }
