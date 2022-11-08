@@ -71,24 +71,30 @@ const ServiceDetailsReview = () => {
         </div>
         <div className="px-3 w-full lg:w-96 max-h-screen overflow-y-scroll rounded-tr-3xl bg-slate-200 flex flex-col items-center">
           <h1 className="text-green-500 font-bold text-xl my-2">Review</h1>
-          {reviews.map((review) => (
-            <div
-              key={review._id}
-              className="flex min-h-24 items-center w-full gap-3 my-2 bg-slate-300 p-2 rounded-md"
-            >
-              <div>
-                <img
-                  className="min-w-12 w-16 max-w-20 rounded-full"
-                  src={review.userImage}
-                  alt=""
-                />
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <div
+                key={review._id}
+                className="flex min-h-24 items-center w-full gap-3 my-2 bg-slate-300 p-2 rounded-md"
+              >
+                <div>
+                  <img
+                    className="min-w-12 w-16 max-w-20 rounded-full"
+                    src={review.userImage}
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <h1>{review.username}</h1>
+                  <p>{review.reviewMessage}</p>
+                </div>
               </div>
-              <div>
-                <h1>{review.username}</h1>
-                <p>{review.reviewMessage}</p>
-              </div>
+            ))
+          ) : (
+            <div>
+              <h2 className="text-red-500 font-bold">There is no review</h2>
             </div>
-          ))}
+          )}
         </div>
       </div>
       <div className="bg-slate-200 mt-3 p-3 flex justify-center rounded-bl-3xl rounded-br-3xl">
