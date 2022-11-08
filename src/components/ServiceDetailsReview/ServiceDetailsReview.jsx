@@ -18,15 +18,18 @@ const ServiceDetailsReview = () => {
   const handleReview = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    const username = form.username.value;
     const email = form.email.value;
     const reviewMessage = form.review.value;
 
     const review = {
-      name,
+      username,
       email,
       reviewMessage,
       serviceId: _id,
+      serviceTitle: name,
+      servicePicture: picture,
+      userImage: user.photoURL,
     };
     console.log(review);
 
@@ -66,22 +69,22 @@ const ServiceDetailsReview = () => {
             </div>
           </div>
         </div>
-        <div className="px-3 w-full lg:w-96 rounded-tr-3xl bg-slate-200 flex flex-col items-center">
+        <div className="px-3 w-full lg:w-96 max-h-screen overflow-y-scroll rounded-tr-3xl bg-slate-200 flex flex-col items-center">
           <h1 className="text-green-500 font-bold text-xl my-2">Review</h1>
           {reviews.map((review) => (
             <div
               key={review._id}
-              className="flex h-24 items-center w-full gap-3 my-2 bg-slate-300 p-2 rounded-md"
+              className="flex min-h-24 items-center w-full gap-3 my-2 bg-slate-300 p-2 rounded-md"
             >
               <div>
                 <img
-                  className="w-12 rounded-full"
-                  src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
+                  className="min-w-12 w-16 max-w-20 rounded-full"
+                  src={review.userImage}
                   alt=""
                 />
               </div>
               <div>
-                <h1>{review.name}</h1>
+                <h1>{review.username}</h1>
                 <p>{review.reviewMessage}</p>
               </div>
             </div>
@@ -100,7 +103,7 @@ const ServiceDetailsReview = () => {
               </label>
               <input
                 type="text"
-                name="name"
+                name="username"
                 placeholder="Type here"
                 required
                 className="input input-bordered w-full"
@@ -128,6 +131,7 @@ const ServiceDetailsReview = () => {
               <textarea
                 className="textarea textarea-bordered h-24 w-full"
                 name="review"
+                required
                 placeholder="Your Message Here"
               ></textarea>
             </div>
