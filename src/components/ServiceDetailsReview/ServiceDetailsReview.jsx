@@ -31,8 +31,34 @@ const ServiceDetailsReview = () => {
             </div>
           </div>
         </div>
-        <div className="px-3 w-full lg:w-96 rounded-tr-3xl bg-slate-200">
-          <h1>Review</h1>
+        <div className="px-3 w-full lg:w-96 rounded-tr-3xl bg-slate-200 flex flex-col items-center">
+          <h1 className="text-green-500 font-bold text-xl my-2">Review</h1>
+          <div className="flex justify-center items-center gap-3 my-2 bg-slate-300 p-2 rounded-md">
+            <div>
+              <img
+                className="w-12 h-10 rounded-full"
+                src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
+                alt=""
+              />
+            </div>
+            <div>
+              <h1>Tajwar Saiyeed</h1>
+              <p>Tljsadfl;jalfjsl adsfkljsaflk adsfjas;lk</p>
+            </div>
+          </div>
+          <div className="flex justify-center items-center gap-3 my-2 bg-slate-300 p-2 rounded-md">
+            <div>
+              <img
+                className="w-12 h-10 rounded-full"
+                src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
+                alt=""
+              />
+            </div>
+            <div>
+              <h1>Tajwar Saiyeed</h1>
+              <p>Tljsadfl;jalfjsl adsfkljsaflk adsfjas;lk</p>
+            </div>
+          </div>
         </div>
       </div>
       <div className="bg-slate-200 mt-3 p-3 flex justify-center rounded-bl-3xl rounded-br-3xl">
@@ -78,8 +104,8 @@ const ServiceDetailsReview = () => {
             </div>
             <input
               type="submit"
-              className="btn btn-outline btn-accent my-5 w-96 "
-              value="register"
+              className="btn btn-outline btn-warning my-5 w-96 "
+              value="Review"
             />
           </form>
         ) : (
