@@ -7,7 +7,6 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
   const logoutUser = () => {
     logOut()
       .then(() => toast.success("Logout Successful"))
@@ -21,6 +20,13 @@ const Navbar = () => {
             <img className="w-24" src={logo} alt="logo" />
           </Link>
         </div>
+
+        <div>
+          <Link to="/" className="link">
+            Home
+          </Link>
+        </div>
+
         <div className="flex-none gap-2">
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
