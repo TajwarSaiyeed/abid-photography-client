@@ -12,8 +12,7 @@ const Home = () => {
       <div className="min-h-screen homebg my-10 rounded-3xl overflow-hidden">
         <div className="absolute flex flex-col top-2/4 -translate-y-2/4 p-5">
           <h1 className="text-xl lg:text-6xl font-black uppercase text-center text-white">
-            Wildlife photography is the art of photographing <br />
-            wildlife in its natural surroundings
+            Photography can capture someone's heart and soul.
           </h1>
           <button className="btn btn-outline btn-warning w-52 mx-auto my-5">
             Contact me
@@ -32,16 +31,17 @@ const Home = () => {
           <h1 className="text-xl lg:text-5xl font-bold">About Photographer</h1>
           <p className="text-xl text-justify my-5">
             Tajwar Saiyeed Abid,
-            <br /> Wildlife photography is a loosely-defined profession which
-            demands a passion for nature and art. Wildlife photographers make a
-            career of traveling to remote areas and taking pictures of wild
-            animals and natural scenery.
+            <br />
+            Tajwar was born on 2004 as the first child of three children of
+            parents. In 2013, he complete his primary education. In 2019, he
+            complete his secondary Education. In 2021, he complete his higher
+            Secondary education.
           </p>
         </div>
       </div>
 
       <div className="flex flex-col bg-slate-200 my-2 rounded-2xl p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 my-3 p-5 gap-5 justify-items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 my-3 p-5 gap-5 justify-items-center ">
           {services.map((service) => (
             <Service key={service._id} service={service} />
           ))}

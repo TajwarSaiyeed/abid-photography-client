@@ -7,28 +7,21 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const provider = new GoogleAuthProvider();
 const Login = () => {
-  const { user, loading, googleLoginSignin } = useContext(AuthContext);
+  const { user, googleLoginSignin } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleLogin = () => {
     googleLoginSignin(provider)
-      .then(() => {
+      .then((res) => {
         toast.success("user succesfully signup ");
-
+        console.log(res.user);
         navigate(from, { replace: true });
       })
       .catch((err) => toast.error(err.message));
   };
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen justify-center items-center">
-        <button className="btn btn-square loading"></button>
-      </div>
-    );
-  }
   if (user) {
     return <Navigate to="/"></Navigate>;
   }

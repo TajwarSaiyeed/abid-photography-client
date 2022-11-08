@@ -7,6 +7,7 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
   const logoutUser = () => {
     logOut()
       .then(() => toast.success("Logout Successful"))

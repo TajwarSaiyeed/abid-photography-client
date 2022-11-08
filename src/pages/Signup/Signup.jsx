@@ -7,7 +7,8 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const provider = new GoogleAuthProvider();
 const Signup = () => {
-  const { googleLoginSignin, user, loading } = useContext(AuthContext);
+  const { googleLoginSignin, update, createUserWithEmailPassword, user } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -20,13 +21,27 @@ const Signup = () => {
       .catch((err) => toast.error(err.message));
   };
 
-  if (loading) {
-    return (
-      <div className="flex min-h-screen justify-center items-center">
-        <button className="btn btn-square loading"></button>
-      </div>
-    );
-  }
+  const handleUserLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const namephone = {
+      displayName: name,
+    };
+
+    createUserWithEmailPassword(email, password)
+      .then(() => {
+        toast.success("user succesfully signup ");
+        update(namephone)
+          .then(() => {})
+          .catch((err) => console.log(err));
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err.message));
+  };
 
   if (user) {
     return <Navigate to="/"></Navigate>;
@@ -44,23 +59,29 @@ const Signup = () => {
         up with Google
       </button>
 
-      <form className="w-2/4 flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleUserLogin}
+        className="w-2/4 flex flex-col justify-center items-center"
+      >
         <div className="form-control w-full">
           <label className="label">
             <span className="label-text font-bold">Name</span>
           </label>
           <input
             type="text"
+            name="name"
             placeholder="Type here"
             className="input input-bordered w-full"
           />
         </div>
+
         <div className="form-control w-full ">
           <label className="label">
             <span className="label-text font-bold">Email</span>
           </label>
           <input
             type="text"
+            name="email"
             placeholder="Type here"
             className="input input-bordered w-full"
           />
@@ -71,6 +92,7 @@ const Signup = () => {
           </label>
           <input
             type="password"
+            name="password"
             placeholder="6+ characters"
             className="input input-bordered w-full"
           />
