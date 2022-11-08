@@ -3,6 +3,8 @@ import "./Home.css";
 import photographer from "../../assets/photographer.jpg";
 import { Link, useLoaderData } from "react-router-dom";
 import Service from "../../components/Service/Service";
+import Contactme from "./Contactme";
+import Footer from "../shared/Footer/Footer";
 const Home = () => {
   const services = useLoaderData();
   return (
@@ -48,6 +50,8 @@ const Home = () => {
           See All
         </Link>
       </div>
+      <Contactme />
+      <Footer />
     </div>
   );
 };
