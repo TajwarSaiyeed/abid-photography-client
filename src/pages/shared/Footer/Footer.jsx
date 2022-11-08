@@ -10,7 +10,7 @@ const Footer = () => {
       .then((data) => setServices(data));
   }, []);
   return (
-    <footer className="footer p-10 bg-base-200 text-base-content">
+    <footer className="footer my-2 p-10 bg-base-200 text-base-content">
       <div>
         <img className="w-52" src={logo} alt="" />
         <p>
