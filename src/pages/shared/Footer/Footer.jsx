@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import logo from "../../../assets/logo.png";
 
 const Footer = () => {
+  const [services, setServices] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/services?id=")
+      .then((res) => res.json())
+      .then((data) => setServices(data));
+  }, []);
   return (
     <footer className="footer p-10 bg-base-200 text-base-content">
       <div>
@@ -14,18 +21,14 @@ const Footer = () => {
       </div>
       <div>
         <span className="footer-title">Services</span>
-        <a href="/" className="link link-hover">
+        {/* <a href="/" className="link link-hover">
           Branding
-        </a>
-        <a href="/" className="link link-hover">
-          Design
-        </a>
-        <a href="/" className="link link-hover">
-          Marketing
-        </a>
-        <a href="/" className="link link-hover">
-          Advertisement
-        </a>
+        </a> */}
+        {services.map((service) => (
+          <Link key={service._id} to={`/service/${service.name}`}>
+            {service.name}
+          </Link>
+        ))}
       </div>
       <div>
         <span className="footer-title">Company</span>
