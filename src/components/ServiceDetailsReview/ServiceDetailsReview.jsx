@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const ServiceDetailsReview = () => {
   const service = useLoaderData();
-  const { name, picture, description } = service;
+  const { name, picture, description, price } = service;
   return (
     <div className="grid gap-2" style={{ gridTemplateColumns: "3fr 1fr" }}>
       <div
@@ -17,7 +17,14 @@ const ServiceDetailsReview = () => {
           <div className="max-w-md">
             <h1 className="mb-5 text-3xl font-bold">{name}</h1>
             <p className="mb-5 text-justify">{description}</p>
-            <button className="btn btn-primary">Get Started</button>
+            <div className="indicator">
+              <span className="indicator-item badge badge-primary">
+                ${price}
+              </span>
+              <div className="grid w-32 h-10 bg-orange-600 rounded-full place-items-center">
+                Buy Now
+              </div>
+            </div>
           </div>
         </div>
       </div>
