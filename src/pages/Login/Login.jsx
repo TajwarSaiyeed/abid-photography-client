@@ -7,7 +7,8 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const provider = new GoogleAuthProvider();
 const Login = () => {
-  const { user, googleLoginSignin } = useContext(AuthContext);
+  const { user, googleLoginSignin, loginUserWIthEmailPassword } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -17,6 +18,21 @@ const Login = () => {
       .then((res) => {
         toast.success("user succesfully signup ");
         console.log(res.user);
+        navigate(from, { replace: true });
+      })
+      .catch((err) => toast.error(err.message));
+  };
+
+  const handleUserLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    loginUserWIthEmailPassword(email, password)
+      .then(() => {
+        toast.success("User LoggedIn");
+
         navigate(from, { replace: true });
       })
       .catch((err) => toast.error(err.message));
@@ -39,13 +55,18 @@ const Login = () => {
         in with Google
       </button>
 
-      <form className="w-2/4 flex flex-col justify-center items-center">
+      <form
+        onSubmit={handleUserLogin}
+        className="w-2/4 flex flex-col justify-center items-center"
+      >
         <div className="form-control w-full ">
           <label className="label">
             <span className="label-text font-bold">Email</span>
           </label>
           <input
-            type="text"
+            type="email"
+            required
+            name="email"
             placeholder="Type here"
             className="input input-bordered w-full"
           />
@@ -56,6 +77,8 @@ const Login = () => {
           </label>
           <input
             type="password"
+            name="password"
+            required
             placeholder="6+ characters"
             className="input input-bordered w-full"
           />

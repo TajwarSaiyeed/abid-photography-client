@@ -21,7 +21,7 @@ const Signup = () => {
       .catch((err) => toast.error(err.message));
   };
 
-  const handleUserLogin = (e) => {
+  const handleUserSignup = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -60,7 +60,7 @@ const Signup = () => {
       </button>
 
       <form
-        onSubmit={handleUserLogin}
+        onSubmit={handleUserSignup}
         className="w-2/4 flex flex-col justify-center items-center"
       >
         <div className="form-control w-full">

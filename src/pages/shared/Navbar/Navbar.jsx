@@ -25,6 +25,16 @@ const Navbar = () => {
           <Link to="/" className="link">
             Home
           </Link>
+          {user?.email && (
+            <div className="ml-2 gap-2 flex">
+              <Link to="/myreview" className="link">
+                My Review
+              </Link>
+              <Link to="/addservice" className="link">
+                Add Service
+              </Link>
+            </div>
+          )}
         </div>
 
         <div className="flex-none gap-2">
