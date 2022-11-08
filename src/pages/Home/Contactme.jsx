@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Marker, Popup } from "react-leaflet";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
+import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const Contactme = () => {
+  const { user } = useContext(AuthContext);
   const sendMessage = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -30,6 +32,7 @@ const Contactme = () => {
       .then((data) => {
         if (data.acknowledged) {
           toast.success("Message Sent!");
+          form.reset();
         }
       });
   };
@@ -60,6 +63,7 @@ const Contactme = () => {
                 name="email"
                 placeholder="Type here"
                 className="input input-bordered w-full"
+                defaultValue={user?.email}
                 required
               />
             </div>
