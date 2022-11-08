@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Service = ({ service }) => {
-  console.log(service);
+  // console.log(service);
   const { _id, name, picture, description, price } = service;
   return (
     <div className="card card-side bg-base-100 shadow-xl">

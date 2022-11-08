@@ -1,11 +1,46 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const ServiceDetailsReview = () => {
+  const [reviews, setReviews] = useState([]);
   const service = useLoaderData();
-  const { name, picture, description, price } = service;
+
+  const { _id, name, picture, description, price } = service;
   const { user } = useContext(AuthContext);
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/review/${_id}`)
+      .then((res) => res.json())
+      .then((data) => setReviews(data));
+  }, [_id, reviews]);
+
+  const handleReview = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const reviewMessage = form.review.value;
+
+    const review = {
+      name,
+      email,
+      reviewMessage,
+      serviceId: _id,
+    };
+    console.log(review);
+
+    fetch("http://localhost:5000/reviews", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(review),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-2">
@@ -33,38 +68,30 @@ const ServiceDetailsReview = () => {
         </div>
         <div className="px-3 w-full lg:w-96 rounded-tr-3xl bg-slate-200 flex flex-col items-center">
           <h1 className="text-green-500 font-bold text-xl my-2">Review</h1>
-          <div className="flex justify-center items-center gap-3 my-2 bg-slate-300 p-2 rounded-md">
-            <div>
-              <img
-                className="w-12 h-10 rounded-full"
-                src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
-                alt=""
-              />
+          {reviews.map((review) => (
+            <div
+              key={review._id}
+              className="flex h-24 items-center w-full gap-3 my-2 bg-slate-300 p-2 rounded-md"
+            >
+              <div>
+                <img
+                  className="w-12 rounded-full"
+                  src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
+                  alt=""
+                />
+              </div>
+              <div>
+                <h1>{review.name}</h1>
+                <p>{review.reviewMessage}</p>
+              </div>
             </div>
-            <div>
-              <h1>Tajwar Saiyeed</h1>
-              <p>Tljsadfl;jalfjsl adsfkljsaflk adsfjas;lk</p>
-            </div>
-          </div>
-          <div className="flex justify-center items-center gap-3 my-2 bg-slate-300 p-2 rounded-md">
-            <div>
-              <img
-                className="w-12 h-10 rounded-full"
-                src="https://lh3.googleusercontent.com/a/ALm5wu0-9l_dlxAsCD616HBJUQlubpseKag2aHrE6MjCOw=s96-c"
-                alt=""
-              />
-            </div>
-            <div>
-              <h1>Tajwar Saiyeed</h1>
-              <p>Tljsadfl;jalfjsl adsfkljsaflk adsfjas;lk</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="bg-slate-200 mt-3 p-3 flex justify-center rounded-bl-3xl rounded-br-3xl">
         {user?.email ? (
           <form
-            // onSubmit={handleUserLogin}
+            onSubmit={handleReview}
             className="w-2/4 flex flex-col justify-center items-center"
           >
             <div className="form-control w-full">
@@ -75,6 +102,7 @@ const ServiceDetailsReview = () => {
                 type="text"
                 name="name"
                 placeholder="Type here"
+                required
                 className="input input-bordered w-full"
               />
             </div>
@@ -89,6 +117,7 @@ const ServiceDetailsReview = () => {
                 placeholder="Type here"
                 className="input input-bordered w-full"
                 readOnly
+                required
                 defaultValue={user?.email}
               />
             </div>
@@ -98,7 +127,7 @@ const ServiceDetailsReview = () => {
               </label>
               <textarea
                 className="textarea textarea-bordered h-24 w-full"
-                name="message"
+                name="review"
                 placeholder="Your Message Here"
               ></textarea>
             </div>
