@@ -3,6 +3,7 @@ import Main from "../../layout/Main/Main";
 import Home from "../../pages/Home/Home";
 import NotFound from "../../pages/NotFound/NotFound";
 import Services from "../../pages/Services/Services";
+import Signup from "../../pages/Signup/Signup";
 
 export const routes = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const routes = createBrowserRouter([
         path: "/services",
         element: <Services />,
         loader: () => fetch("http://localhost:5000/services?id="),
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
       },
     ],
   },
