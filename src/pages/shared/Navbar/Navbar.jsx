@@ -6,10 +6,14 @@ import logo from "../../../assets/logo.png";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, userphotourl, setUserphotourl } =
+    useContext(AuthContext);
   const logoutUser = () => {
     logOut()
-      .then(() => toast.success("Logout Successful"))
+      .then(() => {
+        setUserphotourl(null);
+        toast.success("Logout Successful");
+      })
       .catch((err) => toast.error(err.message));
   };
   return (
@@ -42,7 +46,10 @@ const Navbar = () => {
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               {user?.email ? (
                 <div className="w-10 rounded-full">
-                  <img src={user?.photoURL} alt="" />
+                  <img
+                    src={userphotourl ? userphotourl : user.photoURL}
+                    alt=""
+                  />
                 </div>
               ) : (
                 <FaUserTie className="w-8 h-8 p-1" />

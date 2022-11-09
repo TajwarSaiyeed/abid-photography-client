@@ -22,6 +22,7 @@ const Signup = () => {
     update,
     createUserWithEmailPassword,
     user,
+    setUserphotourl,
   } = useContext(AuthContext);
   const from = location.state?.from?.pathname || "/";
 
@@ -74,6 +75,7 @@ const Signup = () => {
     createUserWithEmailPassword(email, password)
       .then(() => {
         toast.success("user succesfully signup ");
+        setUserphotourl(downloadUrl);
         update(namephoto)
           .then(() => {})
           .catch((err) => console.log(err));

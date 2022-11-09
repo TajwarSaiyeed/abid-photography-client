@@ -16,6 +16,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userphotourl, setUserphotourl] = useState(null);
 
   const googleLoginSignin = (Provider) => {
     setLoading(true);
@@ -60,6 +61,8 @@ const AuthProvider = ({ children }) => {
     update,
     loginUserWIthEmailPassword,
     logOut,
+    userphotourl,
+    setUserphotourl,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
