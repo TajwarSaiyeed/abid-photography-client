@@ -10,7 +10,9 @@ const MyReview = () => {
 
   useEffect(() => {
     if (updateModal !== null) {
-      fetch(`http://localhost:5000/updatereview/${updateModal}`)
+      fetch(
+        `https://service-review-server-abid.vercel.app/updatereview/${updateModal}`
+      )
         .then((res) => res.json())
         .then((data) => {
           setReviewMessage(data.reviewMessage);
@@ -52,13 +54,16 @@ const MyReview = () => {
     const review = form.review.value;
 
     console.log(updateModal);
-    fetch(`http://localhost:5000/myreview/${updateModal}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ review }),
-    })
+    fetch(
+      `https://service-review-server-abid.vercel.app/myreview/${updateModal}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ review }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.matchedCount) {
