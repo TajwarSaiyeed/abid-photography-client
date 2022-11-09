@@ -10,7 +10,7 @@ const ServiceDetailsReview = () => {
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/review/${_id}`)
+    fetch(`https://service-review-server-abid.vercel.app/review/${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id, reviews]);
@@ -33,7 +33,7 @@ const ServiceDetailsReview = () => {
     };
     console.log(review);
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://service-review-server-abid.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",

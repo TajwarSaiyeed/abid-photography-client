@@ -21,7 +21,7 @@ const Contactme = () => {
       message,
     };
 
-    fetch("http://localhost:5000/messages", {
+    fetch("https://service-review-server-abid.vercel.app/messages", {
       method: "POST",
       headers: {
         "content-type": "application/json",

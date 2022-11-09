@@ -4,6 +4,7 @@ import Main from "../../layout/Main/Main";
 import AddService from "../../pages/AddService/AddService";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
+import Myprofile from "../../pages/Myprofile/Myprofile";
 import MyReview from "../../pages/MyReview/MyReview";
 import NotFound from "../../pages/NotFound/NotFound";
 import Services from "../../pages/Services/Services";
@@ -18,12 +19,12 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/services?id=3"),
+        loader: () => fetch("https://service-review-server-abid.vercel.app/services?id=3"),
       },
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("http://localhost:5000/services?id="),
+        loader: () => fetch("https://service-review-server-abid.vercel.app/services?id="),
       },
       {
         path: "/signup",
@@ -32,6 +33,14 @@ export const routes = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Myprofile />,
+          </PrivateRoute>
+        ),
       },
       {
         path: "/myreview",
@@ -53,7 +62,7 @@ export const routes = createBrowserRouter([
         path: "/service/:id",
         element: <ServiceDetailsReview />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/service/${params.id}`),
+          fetch(`https://service-review-server-abid.vercel.app/service/${params.id}`),
       },
     ],
   },

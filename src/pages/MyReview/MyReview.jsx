@@ -1,14 +1,33 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const MyReview = () => {
   const [myreviews, setMyreviews] = useState([]);
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`http://localhost:5000/myreview?email=${user?.email}`)
+    fetch(
+      `https://service-review-server-abid.vercel.app/myreview?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyreviews(data));
   }, [user?.email]);
+
+  const handleDelete = (id) => {
+    fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          const remainingReview = myreviews.filter(
+            (myreview) => myreview._id !== id
+          );
+          setMyreviews(remainingReview);
+          toast.success("Successfully Deleted");
+        }
+      });
+  };
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 my-5">
       {myreviews.map((myreview) => (
@@ -24,6 +43,25 @@ const MyReview = () => {
             <p>{myreview.reviewMessage}</p>
             <div className="card-actions justify-end">
               <button className="btn btn-primary">Buy Now</button>
+              <button
+                onClick={() => handleDelete(myreview._id)}
+                className="btn btn-error btn-square"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>

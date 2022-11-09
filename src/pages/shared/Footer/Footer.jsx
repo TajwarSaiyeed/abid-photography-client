@@ -5,7 +5,7 @@ import logo from "../../../assets/logo.png";
 const Footer = () => {
   const [services, setServices] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/services?id=")
+    fetch("https://service-review-server-abid.vercel.app/services?id=")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
