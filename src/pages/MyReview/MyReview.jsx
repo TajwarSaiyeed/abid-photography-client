@@ -14,19 +14,22 @@ const MyReview = () => {
   }, [user?.email]);
 
   const handleDelete = (id) => {
-    fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          const remainingReview = myreviews.filter(
-            (myreview) => myreview._id !== id
-          );
-          setMyreviews(remainingReview);
-          toast.success("Successfully Deleted");
-        }
-      });
+    const deleteConfirm = window.confirm("Are You Sure To Delete Your Review?");
+    if (deleteConfirm) {
+      fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const remainingReview = myreviews.filter(
+              (myreview) => myreview._id !== id
+            );
+            setMyreviews(remainingReview);
+            toast.success("Successfully Deleted");
+          }
+        });
+    }
   };
   return (
     <div

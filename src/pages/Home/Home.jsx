@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
 import photographer from "../../assets/photographer.jpg";
 import { Link, useLoaderData } from "react-router-dom";
@@ -8,6 +8,22 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 const Home = () => {
   const services = useLoaderData();
   const { loading } = useContext(AuthContext);
+  const [allService, setAllService] = useState([]);
+  const [addbyuser, setAddbyuser] = useState([]);
+
+  useEffect(() => {
+    fetch("https://service-review-server-abid.vercel.app/services?id=")
+      .then((res) => res.json())
+      .then((data) => setAllService(data));
+  }, [addbyuser]);
+
+  useEffect(() => {
+    const setByUser = allService.filter((service) => service["email"]);
+    if (setByUser) {
+      setAddbyuser(setByUser);
+    }
+  }, [allService]);
+
   if (loading) {
     return (
       <div className="flex w-full justify-center">
@@ -57,6 +73,18 @@ const Home = () => {
         <Link className="btn w-80 mx-auto" to="/services">
           See All
         </Link>
+      </div>
+      <div>
+        <h1 className="font-bold text-5xl text-center my-5">
+          Services Add By User
+        </h1>
+        <div className="flex flex-col bg-slate-200 my-2 rounded-2xl p-4">
+          <div className="grid grid-cols-1 my-3 p-2 gap-5 justify-items-center ">
+            {addbyuser.map((service) => (
+              <Service key={service._id} service={service} />
+            ))}
+          </div>
+        </div>
       </div>
       <Contactme />
     </div>

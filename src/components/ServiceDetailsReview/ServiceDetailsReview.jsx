@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
@@ -31,7 +32,6 @@ const ServiceDetailsReview = () => {
       servicePicture: picture,
       userImage: user.photoURL,
     };
-    console.log(review);
 
     fetch("https://service-review-server-abid.vercel.app/reviews", {
       method: "POST",
@@ -41,7 +41,12 @@ const ServiceDetailsReview = () => {
       body: JSON.stringify(review),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.acknowledged) {
+          toast.success("Review Successfully Added");
+          form.reset();
+        }
+      });
   };
 
   return (
@@ -143,7 +148,7 @@ const ServiceDetailsReview = () => {
             </div>
             <input
               type="submit"
-              className="btn btn-outline btn-warning my-5 w-96 "
+              className="btn btn-outline btn-warning my-5 lg:w-96 w-52"
               value="Review"
             />
           </form>

@@ -6,7 +6,10 @@ const Service = ({ service }) => {
   // console.log(service);
   const { _id, name, picture, description, price } = service;
   return (
-    <div className="card card-side bg-base-100 shadow-xl">
+    <div
+      className="card card-side bg-base-100 shadow-xl min-w-96"
+      style={{ maxWidth: "593px" }}
+    >
       <PhotoProvider>
         <PhotoView src={picture}>
           <figure>
