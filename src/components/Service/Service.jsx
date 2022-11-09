@@ -16,9 +16,20 @@ const Service = ({ service }) => {
       </PhotoProvider>
       <div className="card-body w-2/4 lg:w-full">
         <h2 className="card-title">{name}</h2>
-        <p>{description.length > 100 && description.slice(0, 100) + "..."}</p>
+        <p>
+          {description.length > 100
+            ? description.slice(0, 100) + "..."
+            : description}
+        </p>
         <div className="card-actions justify-end">
           <div className="flex justify-center items-center gap-5">
+            {service?.userPhoto && (
+              <img
+                className="w-10 h-10 rounded-full relative right-0"
+                src={service.userPhoto}
+                alt="Movie"
+              />
+            )}
             <span className="text-orange-400 font-bold text-3xl">${price}</span>
             <Link to={`/service/${_id}`} className="btn btn-primary">
               View Details

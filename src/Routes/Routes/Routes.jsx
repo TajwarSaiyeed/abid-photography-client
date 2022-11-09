@@ -25,8 +25,6 @@ export const routes = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
-        loader: () =>
-          fetch("https://service-review-server-abid.vercel.app/services?id="),
       },
       {
         path: "/signup",

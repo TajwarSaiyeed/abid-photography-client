@@ -52,6 +52,7 @@ const AddService = () => {
       picture,
       price,
       description,
+      userPhoto: user.photoURL,
     };
 
     fetch("http://localhost:5000/services", {
@@ -72,10 +73,10 @@ const AddService = () => {
   return (
     <div className="flex flex-col w-full py-5 gap-4 items-center">
       <h1 className="text-5xl font-bold uppercase">Add Services</h1>
-      <div className="flex gap-4 w-full">
+      <div className="flex flex-col lg:flex-row gap-4 w-full">
         <div
           className={`${
-            !downloadUrl ? "w-2/4" : "w-full"
+            !downloadUrl ? "w-full lg:w-2/4" : "w-full lg:w-2/4"
           } px-4 bg-slate-200 rounded-2xl`}
         >
           <div
@@ -187,10 +188,10 @@ const AddService = () => {
           </form>
         </div>
         {downloadUrl && (
-          <div className="w-full rounded-2xl overflow-hidden bg-slate-200">
+          <div className="w-full lg:w-2/4 rounded-2xl overflow-hidden bg-slate-200">
             <div className="w-full flex px-10 flex-col bg-slate-200 justify-center items-center">
               <h1 className="text-3xl mt-5 mb-10 font-bold">Service Preview</h1>
-              <div className="card w-full bg-base-100 shadow-xl image-full">
+              <div className="card w-full bg-base-100 shadow-xl mb-5 image-full">
                 <figure>
                   <img className="w-full" src={downloadUrl} alt="Shoes" />
                 </figure>
