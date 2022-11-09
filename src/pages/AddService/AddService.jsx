@@ -9,6 +9,7 @@ const AddService = () => {
   const [imgurl, setImgurl] = useState(null);
   const [serviceName, setServiceName] = useState("");
   const [serviceDescription, setserviceDescription] = useState("");
+  const [price, setPrice] = useState(0);
   const [downloadUrl, setDownloadUrl] = useState(null);
   const imageListRef = ref(storage, "serviceImages/");
   const { user } = useContext(AuthContext);
@@ -39,6 +40,34 @@ const AddService = () => {
   const handleUserSignup = (e) => {
     e.preventDefault();
     const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const picture = form.picture.value;
+    const price = form.price.value;
+    const description = form.description.value;
+
+    const service = {
+      name,
+      email,
+      picture,
+      price,
+      description,
+    };
+
+    fetch("http://localhost:5000/services", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(service),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) {
+          form.reset();
+          toast.success("Service Added SuccessFully");
+        }
+      });
   };
   return (
     <div className="flex flex-col w-full py-5 gap-4 items-center">
@@ -98,6 +127,7 @@ const AddService = () => {
               </label>
               <input
                 type="text"
+                name="picture"
                 readOnly
                 required
                 placeholder="Image URL"
@@ -127,6 +157,7 @@ const AddService = () => {
                   type="number"
                   name="price"
                   placeholder="Type here"
+                  onChange={(e) => setPrice(e.target.value)}
                   className="input input-bordered w-full"
                 />
               </div>
@@ -134,14 +165,14 @@ const AddService = () => {
             {downloadUrl && (
               <div className="form-control w-full">
                 <label className="label">
-                  <span className="label-text">Message</span>
+                  <span className="label-text">Description</span>
                 </label>
                 <textarea
                   className="textarea textarea-bordered h-24 w-full"
-                  name="review"
+                  name="description"
                   required
                   onChange={(e) => setserviceDescription(e.target.value)}
-                  placeholder="Your Message Here"
+                  placeholder="Service Description Here"
                 ></textarea>
               </div>
             )}
@@ -161,12 +192,15 @@ const AddService = () => {
               <h1 className="text-3xl mt-5 mb-10 font-bold">Service Preview</h1>
               <div className="card w-full bg-base-100 shadow-xl image-full">
                 <figure>
-                  <img src={downloadUrl} alt="Shoes" />
+                  <img className="w-full" src={downloadUrl} alt="Shoes" />
                 </figure>
                 <div className="card-body">
                   <h2 className="card-title">{serviceName}</h2>
                   <p>{serviceDescription}</p>
-                  <div className="card-actions justify-end">
+                  <div className="flex card-actions justify-end">
+                    <span className="text-orange-400 font-bold text-3xl">
+                      ${price}
+                    </span>
                     <button className="btn btn-primary">Buy Now</button>
                   </div>
                 </div>
