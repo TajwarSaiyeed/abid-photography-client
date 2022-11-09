@@ -16,9 +16,21 @@ const Myprofile = () => {
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="card w-96 bg-base-100 shadow-xl">
-        <figure className="px-10 pt-10">
-          <img src={user.photoURL} alt="Shoes" className="rounded-full" />
-        </figure>
+        <div className="flex items-center mt-10 justify-center">
+          <div className="indicator ">
+            <span className="indicator-item badge badge-error">
+              <button onClick={logoutUser}>Logout</button>
+            </span>
+            <div className="grid w-40 h-40 p-2 rounded-full bg-base-300 justify-items-center place-items-center">
+              <img
+                src={user.photoURL}
+                alt="Shoes"
+                className=" w-full h-full rounded-full"
+              />
+            </div>
+          </div>
+        </div>
+        <figure className="px-10 pt-10"></figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title text-3xl">{user.displayName}</h2>
           <div className="card-actions">
@@ -28,22 +40,6 @@ const Myprofile = () => {
             <Link to="/myreview" className="link">
               My Review
             </Link>
-            <div className="badge badge-error gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                className="inline-block w-4 h-4 stroke-current"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
-              <button onClick={logoutUser}>Logout</button>
-            </div>
           </div>
         </div>
       </div>

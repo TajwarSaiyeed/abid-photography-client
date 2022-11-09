@@ -19,12 +19,14 @@ export const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("https://service-review-server-abid.vercel.app/services?id=3"),
+        loader: () =>
+          fetch("https://service-review-server-abid.vercel.app/services?id=3"),
       },
       {
         path: "/services",
         element: <Services />,
-        loader: () => fetch("https://service-review-server-abid.vercel.app/services?id="),
+        loader: () =>
+          fetch("https://service-review-server-abid.vercel.app/services?id="),
       },
       {
         path: "/signup",
@@ -38,7 +40,7 @@ export const routes = createBrowserRouter([
         path: "/profile",
         element: (
           <PrivateRoute>
-            <Myprofile />,
+            <Myprofile />
           </PrivateRoute>
         ),
       },
@@ -46,7 +48,7 @@ export const routes = createBrowserRouter([
         path: "/myreview",
         element: (
           <PrivateRoute>
-            <MyReview />,
+            <MyReview />
           </PrivateRoute>
         ),
       },
@@ -54,7 +56,7 @@ export const routes = createBrowserRouter([
         path: "/addservice",
         element: (
           <PrivateRoute>
-            <AddService />,
+            <AddService />
           </PrivateRoute>
         ),
       },
@@ -62,7 +64,9 @@ export const routes = createBrowserRouter([
         path: "/service/:id",
         element: <ServiceDetailsReview />,
         loader: ({ params }) =>
-          fetch(`https://service-review-server-abid.vercel.app/service/${params.id}`),
+          fetch(
+            `https://service-review-server-abid.vercel.app/service/${params.id}`
+          ),
       },
     ],
   },
