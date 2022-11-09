@@ -19,7 +19,9 @@ const Login = () => {
         toast.success("user succesfully Login ");
         navigate(from, { replace: true });
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleUserLogin = (e) => {
@@ -33,7 +35,9 @@ const Login = () => {
         toast.success("User Logged In");
         navigate(from, { replace: true });
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
   if (loading) {
     return (

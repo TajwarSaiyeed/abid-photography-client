@@ -42,16 +42,19 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser === null || currentUser) {
-        setUser(currentUser);
+      try {
+        if (currentUser === null || currentUser) {
+          setUser(currentUser);
+        }
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     return () => {
       unsub();
     };
-  }, []);
+  }, [loading]);
 
   const authInfo = {
     user,
