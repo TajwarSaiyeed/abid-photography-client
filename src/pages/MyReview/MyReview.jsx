@@ -101,7 +101,7 @@ const MyReview = () => {
                     onClick={() => setUpdateModal(myreview._id)}
                     className="btn btn-success"
                   >
-                    update
+                    edit
                   </label>
 
                   <input
