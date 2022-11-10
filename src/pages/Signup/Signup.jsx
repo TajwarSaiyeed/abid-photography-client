@@ -67,7 +67,6 @@ const Signup = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("photography-token", data.token);
           });
         navigate(from, { replace: true });
@@ -109,7 +108,6 @@ const Signup = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("photography-token", data.token);
           });
         navigate(from, { replace: true });
