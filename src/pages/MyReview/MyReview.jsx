@@ -18,7 +18,6 @@ const MyReview = () => {
         .then((res) => res.json())
         .then((data) => {
           setReviewMessage(data.reviewMessage);
-          // console.log(data);
         });
     }
   }, [updateModal]);
