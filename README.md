@@ -20,6 +20,11 @@
 1. First You Have To Upload Picture. No worry click on upload button it will automatic upload to firebase then you can add title description and price to the service.
 2. When your picture upload complete you will see a preview.
 
+# Add Review
+
+You can add review in every single service.
+only logged in can set a review.
+
 # There Is A Map using React-leaflet
 By using this map you can find me
 
@@ -28,9 +33,12 @@ By using this map you can find me
 On home there is a contact me option.
 Complete the form and send the message to admin
 
+
+# Authentication System
+
+There is two authentication system. one is email password and another is google authtication.
+
 # Getting Started with Create React App
-
-
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
