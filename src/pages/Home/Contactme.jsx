@@ -40,10 +40,13 @@ const Contactme = () => {
   const position = [22.0644, 452.0964];
   return (
     <div className="flex flex-col justify-center items-center p-10 my-3 bg-slate-200 rounded-2xl">
-      <h1 className="text-3xl font-bold">Contact ME</h1>
+      <h1 className="text-3xl font-bold">Contact Me</h1>
       <div className="flex flex-col justify-center lg:flex-row w-full">
         <div className="w-full lg:w-2/4">
-          <form onSubmit={sendMessage}>
+          <form
+            onSubmit={sendMessage}
+            className="flex flex-col justify-center items-center"
+          >
             <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Your Name</span>
@@ -79,12 +82,12 @@ const Contactme = () => {
                 className="input input-bordered w-full"
               />
             </div>
-            <div className="form-control">
+            <div className="form-control w-full">
               <label className="label">
                 <span className="label-text">Message</span>
               </label>
               <textarea
-                className="textarea textarea-bordered h-24"
+                className="textarea textarea-bordered w-full h-24"
                 name="message"
                 placeholder="Your Message Here"
               ></textarea>

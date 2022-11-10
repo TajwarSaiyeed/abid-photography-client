@@ -146,8 +146,8 @@ const Signup = () => {
       <div
         className={
           !downloadUrl
-            ? "bg-red-500 my-5 form-control border-black border p-5 rounded-xl w-2/4"
-            : "form-control my-5 border-black border p-5 rounded-xl w-2/4"
+            ? "bg-red-500 my-5 form-control border-black border p-5 rounded-xl lg:w-2/4 "
+            : "form-control my-5 border-black border p-5 rounded-xl lg:w-2/4"
         }
       >
         <label className="label">
@@ -169,7 +169,7 @@ const Signup = () => {
 
       <form
         onSubmit={handleUserSignup}
-        className="w-2/4 flex flex-col justify-center items-center"
+        className="lg:w-2/4 w-full p-5 flex flex-col justify-center items-center"
       >
         <div className="form-control w-full">
           <label className="label">
@@ -222,7 +222,7 @@ const Signup = () => {
           type="submit"
           className={`${
             !downloadUrl && "btn-disabled"
-          } btn btn-outline btn-accent my-5 w-96`}
+          } btn btn-outline btn-accent my-5 max-w-96 w-80 min-w-40`}
           value="register"
         />
         <div className="font-semibold text-xl">

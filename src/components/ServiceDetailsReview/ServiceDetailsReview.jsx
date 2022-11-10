@@ -65,7 +65,7 @@ const ServiceDetailsReview = () => {
     <div>
       <div className="flex flex-col lg:flex-row gap-2">
         <div
-          className="hero min-h-screen rounded-tl-3xl overflow-hidden"
+          className="hero min-h-screen rounded-tl-2xl rounded-tr-2xl lg:rounded-tl-3xl overflow-hidden"
           style={{
             backgroundImage: `url(${picture})`,
           }}

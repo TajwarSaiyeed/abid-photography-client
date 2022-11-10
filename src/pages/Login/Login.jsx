@@ -97,7 +97,7 @@ const Login = () => {
 
       <form
         onSubmit={handleUserLogin}
-        className="w-2/4 flex flex-col justify-center items-center"
+        className="lg:w-2/4 w-full p-5 flex flex-col justify-center items-center"
       >
         <div className="form-control w-full ">
           <label className="label">
@@ -125,7 +125,7 @@ const Login = () => {
         </div>
         <input
           type="submit"
-          className="btn btn-outline btn-accent my-5 w-96"
+          className="btn btn-outline btn-accent my-5 max-w-96 w-36 min-w-40"
           value="Login"
         />
         <div className="font-semibold text-xl">
