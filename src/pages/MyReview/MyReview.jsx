@@ -32,7 +32,6 @@ const MyReview = () => {
   useEffect(() => {
     fetch(
       `https://service-review-server-abid.vercel.app/myreview?email=${user?.email}`,
-      // `http://localhost:5000/myreview?email=${user?.email}`,
       {
         headers: {
           authorization: `Bearer ${localStorage.getItem("photography-token")}`,
@@ -52,7 +51,6 @@ const MyReview = () => {
     const deleteConfirm = window.confirm("Are You Sure To Delete Your Review?");
     if (deleteConfirm) {
       fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
-        // fetch(`http://localhost:5000/myreview/${id}`, {
         method: "DELETE",
         headers: {
           authorization: `Bearer ${localStorage.getItem("photography-token")}`,
@@ -76,10 +74,8 @@ const MyReview = () => {
     const form = e.target;
     const review = form.review.value;
 
-    console.log(updateModal);
     fetch(
       `https://service-review-server-abid.vercel.app/myreview/${updateModal}`,
-      // `http://localhost:5000/myreview/${updateModal}`,
       {
         method: "PATCH",
         headers: {
