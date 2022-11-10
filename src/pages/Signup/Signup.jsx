@@ -91,7 +91,7 @@ const Signup = () => {
     );
   }
   if (user) {
-    return <Navigate to="/"></Navigate>;
+    return <Navigate to={from}></Navigate>;
   }
   return (
     <div className="min-h-screen py-5 my-5 flex flex-col items-center justify-center bg-slate-200 rounded-2xl">

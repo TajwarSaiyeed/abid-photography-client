@@ -47,7 +47,7 @@ const Login = () => {
     );
   }
   if (user) {
-    return <Navigate to="/"></Navigate>;
+    return <Navigate to={from}></Navigate>;
   }
 
   return (

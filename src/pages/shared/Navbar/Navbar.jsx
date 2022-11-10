@@ -29,16 +29,6 @@ const Navbar = () => {
           <Link to="/" className="link">
             Home
           </Link>
-          {user?.email && (
-            <div className="ml-2 gap-2 flex">
-              <Link to="/myreview" className="link">
-                My Review
-              </Link>
-              <Link to="/addservice" className="link">
-                Add Service
-              </Link>
-            </div>
-          )}
         </div>
 
         <div className="flex-none gap-2">
@@ -66,6 +56,12 @@ const Navbar = () => {
                       Profile
                       <span className="badge">New</span>
                     </Link>
+                  </li>
+                  <li>
+                    <Link to="/myreview">My Review</Link>
+                  </li>
+                  <li>
+                    <Link to="/addservice">Add Service</Link>
                   </li>
                   <li>
                     <a href="/">Settings</a>
