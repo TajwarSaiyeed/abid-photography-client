@@ -31,8 +31,24 @@ const Login = () => {
     const password = form.password.value;
 
     loginUserWIthEmailPassword(email, password)
-      .then(() => {
+      .then((res) => {
+        const user = res.user;
+        const currentUser = {
+          email: user.email,
+        };
         toast.success("User Logged In");
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("photography-token", data.token);
+          });
         navigate(from, { replace: true });
       })
       .catch((err) => {

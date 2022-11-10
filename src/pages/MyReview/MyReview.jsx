@@ -7,7 +7,7 @@ const MyReview = () => {
   const [myreviews, setMyreviews] = useState([]);
   const [reviewmessage, setReviewMessage] = useState(null);
   const [updateModal, setUpdateModal] = useState(null);
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
   useTitle("My Review");
 
   useEffect(() => {
@@ -24,11 +24,22 @@ const MyReview = () => {
 
   useEffect(() => {
     fetch(
-      `https://service-review-server-abid.vercel.app/myreview?email=${user?.email}`
+      `https://service-review-server-abid.vercel.app/myreview?email=${user?.email}`,
+      // `http://localhost:5000/myreview?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("photography-token")}`,
+        },
+      }
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => setMyreviews(data));
-  }, [user?.email]);
+  }, [logOut, user?.email]);
 
   const handleDelete = (id) => {
     const deleteConfirm = window.confirm("Are You Sure To Delete Your Review?");
@@ -57,10 +68,12 @@ const MyReview = () => {
     console.log(updateModal);
     fetch(
       `https://service-review-server-abid.vercel.app/myreview/${updateModal}`,
+      // `http://localhost:5000/myreview/${updateModal}`,
       {
         method: "PATCH",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${localStorage.getItem("photography-token")}`,
         },
         body: JSON.stringify({ review }),
       }
@@ -69,7 +82,7 @@ const MyReview = () => {
       .then((data) => {
         if (data.matchedCount) {
           setReviewMessage(review);
-          window.location.reload();
+          // window.location.reload();
           toast.success("Review Updated");
           form.reset();
         }
