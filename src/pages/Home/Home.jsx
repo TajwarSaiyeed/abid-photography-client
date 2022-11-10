@@ -50,7 +50,7 @@ const Home = () => {
       </div>
       <About />
       <div className="flex flex-col bg-slate-200 my-2 rounded-2xl p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 my-3 p-5 gap-5 justify-items-center ">
+        <div className="grid grid-cols-1 my-3 p-5 gap-5 justify-items-center">
           {services.map((service) => (
             <Service key={service._id} service={service} />
           ))}

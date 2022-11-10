@@ -7,13 +7,17 @@ const Service = ({ service }) => {
   const { _id, name, picture, description, price } = service;
   return (
     <div
-      className="card card-side bg-base-100 shadow-xl min-w-96"
+      className="card card-side bg-base-100 shadow-xl min-w-96 w-50"
       style={{ maxWidth: "593px" }}
     >
       <PhotoProvider>
         <PhotoView src={picture}>
           <figure>
-            <img className="w-52 lg:w-80 h-full" src={picture} alt="Movie" />
+            <img
+              className="w-40 md:w-60 lg:w-80 h-full"
+              src={picture}
+              alt="Movie"
+            />
           </figure>
         </PhotoView>
       </PhotoProvider>
@@ -33,8 +37,13 @@ const Service = ({ service }) => {
                 alt="Movie"
               />
             )}
-            <span className="text-orange-400 font-bold text-3xl">${price}</span>
-            <Link to={`/service/${_id}`} className="btn btn-primary">
+            <span className="text-orange-400 font-bold text-xl lg:text-3xl">
+              ${price}
+            </span>
+            <Link
+              to={`/service/${_id}`}
+              className="btn btn-primary w-28 lg:w-40"
+            >
               View Details
             </Link>
           </div>
