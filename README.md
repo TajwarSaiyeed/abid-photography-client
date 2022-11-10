@@ -1,4 +1,43 @@
+# live site : <https://abid-photography.web.app/>
+# server address : <https://service-review-server-abid.vercel.app/>
+# Project Title : Abid PhotoGraphy
+# The dependencies i have added to my website 
+daisyui
+firebase
+leaflet
+react
+react-dom
+react-hot-toast
+react-icons
+react-leaflet
+react-photo-view
+react-router-dom
+react-script
+uuid
+
+
+# You can added service.
+1. First You Have To Upload Picture. No worry click on upload button it will automatic upload to firebase then you can add title description and price to the service.
+2. When your picture upload complete you will see a preview.
+
+# There Is A Map using React-leaflet
+By using this map you can find me
+
+# You can send message to admin.
+
+On home there is a contact me option.
+Complete the form and send the message to admin
+
+
+
+
+
+
+
+
 # Getting Started with Create React App
+
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
