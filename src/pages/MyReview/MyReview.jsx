@@ -7,13 +7,20 @@ const MyReview = () => {
   const [myreviews, setMyreviews] = useState([]);
   const [reviewmessage, setReviewMessage] = useState(null);
   const [updateModal, setUpdateModal] = useState(null);
-  const { user, logOut } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
   useTitle("My Review");
 
   useEffect(() => {
     if (updateModal !== null) {
       fetch(
-        `https://service-review-server-abid.vercel.app/updatereview/${updateModal}`
+        `https://service-review-server-abid.vercel.app/updatereview/${updateModal}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem(
+              "photography-token"
+            )}`,
+          },
+        }
       )
         .then((res) => res.json())
         .then((data) => {
@@ -47,6 +54,9 @@ const MyReview = () => {
       fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
         // fetch(`http://localhost:5000/myreview/${id}`, {
         method: "DELETE",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("photography-token")}`,
+        },
       })
         .then((res) => res.json())
         .then((data) => {
@@ -94,6 +104,14 @@ const MyReview = () => {
         }
       });
   };
+
+  if (loading) {
+    return (
+      <div className="flex w-full justify-center">
+        <button className="btn loading">loading</button>;
+      </div>
+    );
+  }
   return (
     <div className="relative">
       <div

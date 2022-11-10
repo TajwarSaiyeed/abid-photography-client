@@ -8,7 +8,7 @@ const Footer = () => {
     fetch("https://service-review-server-abid.vercel.app/services?id=")
       .then((res) => res.json())
       .then((data) => setServices(data));
-  }, []);
+  }, [services]);
   return (
     <footer className="footer my-2 p-10 bg-base-200 text-base-content">
       <div>

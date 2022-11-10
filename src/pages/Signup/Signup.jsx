@@ -53,11 +53,29 @@ const Signup = () => {
 
   const handleGoogleSignup = () => {
     googleLoginSignin(provider)
-      .then(() => {
-        toast.success("user succesfully signup ");
+      .then((res) => {
+        const user = res.user;
+        const currentUser = {
+          email: user.email,
+        };
+        toast.success("User Logged In");
+        fetch("https://service-review-server-abid.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("photography-token", data.token);
+          });
         navigate(from, { replace: true });
       })
-      .catch((err) => toast.error(err.message));
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
 
   const handleUserSignup = (e) => {
@@ -73,12 +91,28 @@ const Signup = () => {
     };
 
     createUserWithEmailPassword(email, password)
-      .then(() => {
+      .then((res) => {
+        const user = res.user;
+        const currentUser = {
+          email: user.email,
+        };
         toast.success("user succesfully signup ");
         setUserphotourl(downloadUrl);
         update(namephoto)
           .then(() => {})
           .catch((err) => console.log(err));
+        fetch("https://service-review-server-abid.vercel.app/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("photography-token", data.token);
+          });
         navigate(from, { replace: true });
       })
       .catch((err) => toast.error(err.message));
