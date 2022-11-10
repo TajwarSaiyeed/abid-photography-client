@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./Home.css";
-import photographer from "../../assets/photographer.jpg";
 import { Link, useLoaderData } from "react-router-dom";
 import Service from "../../components/Service/Service";
 import Contactme from "./Contactme";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import About from "./About";
 const Home = () => {
   const services = useLoaderData();
   const { loading } = useContext(AuthContext);
@@ -43,27 +43,7 @@ const Home = () => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row gap-3 p-5 lg:p-20 bg-slate-200 min-h-96 rounded-2xl">
-        <div className="w-full lg:w-2/4">
-          <img
-            className="w-full h-full rounded-2xl"
-            src={photographer}
-            alt=""
-          />
-        </div>
-        <div className="w-full lg:w-2/4 bg-slate-200 shadow-white shadow-lg  p-5 rounded-2xl">
-          <h1 className="text-xl lg:text-5xl font-bold">About Photographer</h1>
-          <p className="text-xl text-justify my-5">
-            Tajwar Saiyeed Abid,
-            <br />
-            Tajwar was born on 2004 as the first child of three children of
-            parents. In 2013, he complete his primary education. In 2019, he
-            complete his secondary Education. In 2021, he complete his higher
-            Secondary education.
-          </p>
-        </div>
-      </div>
-
+      <About />
       <div className="flex flex-col bg-slate-200 my-2 rounded-2xl p-4">
         <div className="grid grid-cols-1 lg:grid-cols-2 my-3 p-5 gap-5 justify-items-center ">
           {services.map((service) => (
