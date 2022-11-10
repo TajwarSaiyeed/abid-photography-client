@@ -37,7 +37,8 @@ const Login = () => {
           email: user.email,
         };
         toast.success("User Logged In");
-        fetch("http://localhost:5000/jwt", {
+        // fetch("http://localhost:5000/jwt", {
+        fetch("https://service-review-server-abid.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",

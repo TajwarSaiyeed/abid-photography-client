@@ -45,6 +45,7 @@ const MyReview = () => {
     const deleteConfirm = window.confirm("Are You Sure To Delete Your Review?");
     if (deleteConfirm) {
       fetch(`https://service-review-server-abid.vercel.app/myreview/${id}`, {
+        // fetch(`http://localhost:5000/myreview/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
@@ -78,11 +79,16 @@ const MyReview = () => {
         body: JSON.stringify({ review }),
       }
     )
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          return logOut();
+        }
+        return res.json();
+      })
       .then((data) => {
         if (data.matchedCount) {
           setReviewMessage(review);
-          // window.location.reload();
+          window.location.reload();
           toast.success("Review Updated");
           form.reset();
         }

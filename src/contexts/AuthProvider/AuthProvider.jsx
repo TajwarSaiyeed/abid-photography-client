@@ -37,6 +37,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setLoading(true);
+    localStorage.removeItem("photography-token");
     return signOut(auth);
   };
 
@@ -47,7 +48,9 @@ const AuthProvider = ({ children }) => {
           setUser(currentUser);
         }
       } finally {
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 3000);
       }
     });
 

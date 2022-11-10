@@ -9,7 +9,6 @@ const Services = () => {
   const { loading } = useContext(AuthContext);
   const [addbyuser, setAddbyuser] = useState([]);
   useTitle("Services");
-  console.log(loading);
   useEffect(() => {
     fetch("https://service-review-server-abid.vercel.app/services?id=")
       .then((res) => res.json())

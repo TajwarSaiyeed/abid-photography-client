@@ -16,13 +16,11 @@ const AddService = () => {
   const imageListRef = ref(storage, "serviceImages/");
   const { user } = useContext(AuthContext);
   const upload = () => {
-    // const image = e.target.files[0];
     if (image === null) return;
 
     const imageSplit = `serviceImages/${image.name + v4()}`.split(" ").join("");
 
     const imageRef = ref(storage, imageSplit);
-    // console.log("imageRef : ", imageRef);
     uploadBytes(imageRef, image).then(() => {
       toast.success("image uploaded");
       setImgurl(imageSplit);
@@ -61,6 +59,7 @@ const AddService = () => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("photography-token")}`,
       },
       body: JSON.stringify(service),
     })
