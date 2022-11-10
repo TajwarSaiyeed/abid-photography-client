@@ -98,7 +98,7 @@ const Signup = () => {
         setUserphotourl(downloadUrl);
         update(namephoto)
           .then(() => {})
-          .catch((err) => console.log(err));
+          .catch((err) => toast.error(err));
         fetch("https://service-review-server-abid.vercel.app/jwt", {
           method: "POST",
           headers: {

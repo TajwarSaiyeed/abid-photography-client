@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 
 const Service = ({ service }) => {
-  // console.log(service);
   const { _id, name, picture, description, price } = service;
   return (
     <div

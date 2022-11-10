@@ -42,7 +42,6 @@ const ServiceDetailsReview = () => {
       userImage: user.photoURL,
       date: date_time,
     };
-    console.log(review);
     fetch("https://service-review-server-abid.vercel.app/reviews", {
       method: "POST",
       headers: {
