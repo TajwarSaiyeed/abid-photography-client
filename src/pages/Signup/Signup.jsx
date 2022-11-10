@@ -120,7 +120,7 @@ const Signup = () => {
   if (loading) {
     return (
       <div className="flex w-full justify-center">
-        <button className="btn loading">loading</button>;
+        <button className="btn loading">loading</button>
       </div>
     );
   }
