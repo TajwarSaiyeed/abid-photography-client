@@ -4,9 +4,11 @@ import { Marker, Popup } from "react-leaflet";
 import { MapContainer } from "react-leaflet/MapContainer";
 import { TileLayer } from "react-leaflet/TileLayer";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Contactme = () => {
   const { user } = useContext(AuthContext);
+  useTitle("Contact Me");
   const sendMessage = (e) => {
     e.preventDefault();
     const form = e.target;

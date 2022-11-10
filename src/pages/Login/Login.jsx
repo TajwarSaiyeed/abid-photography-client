@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const provider = new GoogleAuthProvider();
 const Login = () => {
@@ -11,6 +12,7 @@ const Login = () => {
     useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
+  useTitle("Login");
   const from = location.state?.from?.pathname || "/";
 
   const handleGoogleLogin = () => {

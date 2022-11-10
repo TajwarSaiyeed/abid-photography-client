@@ -7,9 +7,11 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import { storage } from "../../firebase/firebase.config";
 import { v4 } from "uuid";
+import useTitle from "../../hooks/useTitle";
 
 const provider = new GoogleAuthProvider();
 const Signup = () => {
+  useTitle("Signup");
   const [image, setImage] = useState(null);
   const [imgurl, setImgurl] = useState(null);
   const [downloadUrl, setDownloadUrl] = useState(null);
