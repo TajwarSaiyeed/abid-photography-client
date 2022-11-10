@@ -25,9 +25,12 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className="mr-2">
+        <div className="mr-2 flex gap-2">
           <Link to="/" className="link">
             Home
+          </Link>
+          <Link to="/blogs" className="link">
+            Blogs
           </Link>
         </div>
 
