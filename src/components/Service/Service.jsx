@@ -28,7 +28,7 @@ const Service = ({ service }) => {
           <div className="flex justify-center items-center gap-5">
             {service?.userPhoto && (
               <img
-                className="w-10 h-10 rounded-full relative right-0"
+                className="w-6 h-6 rounded-full relative right-0"
                 src={service.userPhoto}
                 alt="Movie"
               />

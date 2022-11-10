@@ -4,7 +4,9 @@ import { storage } from "../../firebase/firebase.config";
 import { v4 } from "uuid";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 const AddService = () => {
+  useTitle("Add Service");
   const [image, setImage] = useState(null);
   const [imgurl, setImgurl] = useState(null);
   const [serviceName, setServiceName] = useState("");

@@ -5,11 +5,13 @@ import Service from "../../components/Service/Service";
 import Contactme from "./Contactme";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import About from "./About";
+import useTitle from "../../hooks/useTitle";
 const Home = () => {
   const services = useLoaderData();
-  const { loading } = useContext(AuthContext);
+  const { loading, setLoading } = useContext(AuthContext);
   const [allService, setAllService] = useState([]);
   const [addbyuser, setAddbyuser] = useState([]);
+  useTitle("Home");
 
   useEffect(() => {
     fetch("https://service-review-server-abid.vercel.app/services?id=")
@@ -51,7 +53,7 @@ const Home = () => {
           ))}
         </div>
         <Link className="btn w-80 mx-auto" to="/services">
-          See All
+          <button onClick={() => setLoading(true)}>See All</button>
         </Link>
       </div>
       <div>

@@ -2,9 +2,11 @@ import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Myprofile = () => {
   const { user, logOut, setUserphotourl } = useContext(AuthContext);
+  useTitle(`Profile ${user?.displayName}`);
   const logoutUser = () => {
     logOut()
       .then(() => {

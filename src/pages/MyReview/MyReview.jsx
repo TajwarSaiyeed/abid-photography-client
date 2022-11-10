@@ -1,12 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const MyReview = () => {
   const [myreviews, setMyreviews] = useState([]);
   const [reviewmessage, setReviewMessage] = useState(null);
   const [updateModal, setUpdateModal] = useState(null);
   const { user } = useContext(AuthContext);
+  useTitle("My Review");
 
   useEffect(() => {
     if (updateModal !== null) {
