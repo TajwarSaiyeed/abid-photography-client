@@ -5,6 +5,7 @@ import { v4 } from "uuid";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
+import { useNavigate } from "react-router-dom";
 const AddService = () => {
   useTitle("Add Service");
   const [image, setImage] = useState(null);
@@ -15,6 +16,7 @@ const AddService = () => {
   const [downloadUrl, setDownloadUrl] = useState(null);
   const imageListRef = ref(storage, "serviceImages/");
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const upload = () => {
     if (image === null) return;
 
@@ -68,6 +70,7 @@ const AddService = () => {
         if (data.acknowledged) {
           form.reset();
           toast.success("Service Added SuccessFully");
+          navigate("/services");
         }
       });
   };
