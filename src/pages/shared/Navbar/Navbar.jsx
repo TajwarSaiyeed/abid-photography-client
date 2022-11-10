@@ -50,7 +50,8 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
+              style={{ zIndex: "999" }}
+              className="mt-3 absolute p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
             >
               {user?.email ? (
                 <>

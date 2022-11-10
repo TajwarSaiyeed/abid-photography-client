@@ -3,6 +3,7 @@ import ServiceDetailsReview from "../../components/ServiceDetailsReview/ServiceD
 import Main from "../../layout/Main/Main";
 import AddService from "../../pages/AddService/AddService";
 import Blogs from "../../pages/Blogs/Blogs";
+import Contactme from "../../pages/Home/Contactme";
 import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import Myprofile from "../../pages/Myprofile/Myprofile";
@@ -38,6 +39,10 @@ export const routes = createBrowserRouter([
       {
         path: "/blogs",
         element: <Blogs />,
+      },
+      {
+        path: "/contactme",
+        element: <Contactme />,
       },
       {
         path: "/profile",

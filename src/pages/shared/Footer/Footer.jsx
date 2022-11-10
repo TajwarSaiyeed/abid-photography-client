@@ -13,11 +13,7 @@ const Footer = () => {
     <footer className="footer my-2 p-10 bg-base-200 text-base-content">
       <div>
         <img className="w-52" src={logo} alt="" />
-        <p>
-          ACME Industries Ltd.
-          <br />
-          Providing reliable tech since 1992
-        </p>
+        <p className="text-xl font-bold my-5 uppercase">Abid Photography</p>
       </div>
       <div>
         <span className="footer-title">Services</span>

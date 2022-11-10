@@ -40,9 +40,12 @@ const Home = () => {
           <h1 className="text-xl lg:text-6xl font-black uppercase text-center text-white">
             Photography can capture someone's heart and soul.
           </h1>
-          <button className="btn btn-outline btn-warning w-52 mx-auto my-5">
+          <Link
+            to="/contactme"
+            className="btn btn-outline btn-warning w-52 mx-auto my-5"
+          >
             Contact me
-          </button>
+          </Link>
         </div>
       </div>
       <About />
