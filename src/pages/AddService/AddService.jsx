@@ -17,6 +17,8 @@ const AddService = () => {
   const imageListRef = ref(storage, "serviceImages/");
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // image upload to firebase storage
   const upload = () => {
     if (image === null) return;
 
@@ -29,7 +31,6 @@ const AddService = () => {
     });
   };
   useEffect(() => {
-    // setDownloadUrl(null);
     listAll(imageListRef).then((res) => {
       const im = res.items.find((i) => i._location.path_ === imgurl);
       if (im) {
@@ -56,6 +57,8 @@ const AddService = () => {
       description,
       userPhoto: user.photoURL,
     };
+
+    //service add
 
     fetch("https://service-review-server-abid.vercel.app/services", {
       method: "POST",
@@ -191,6 +194,8 @@ const AddService = () => {
             />
           </form>
         </div>
+
+        {/* it will show when you have the download url */}
         {downloadUrl && (
           <div className="w-full lg:w-2/4 rounded-2xl overflow-hidden bg-slate-200">
             <div className="w-full flex px-10 flex-col bg-slate-200 justify-center items-center">

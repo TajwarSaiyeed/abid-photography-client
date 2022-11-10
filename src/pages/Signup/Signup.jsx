@@ -29,20 +29,17 @@ const Signup = () => {
   const from = location.state?.from?.pathname || "/";
 
   const upload = () => {
-    // const image = e.target.files[0];
     if (image === null) return;
 
     const imageSplit = `images/${image.name + v4()}`.split(" ").join("");
 
     const imageRef = ref(storage, imageSplit);
-    // console.log("imageRef : ", imageRef);
     uploadBytes(imageRef, image).then(() => {
       toast.success("image uploaded");
       setImgurl(imageSplit);
     });
   };
   useEffect(() => {
-    // setDownloadUrl(null);
     listAll(imageListRef).then((res) => {
       const im = res.items.find((i) => i._location.path_ === imgurl);
       if (im) {

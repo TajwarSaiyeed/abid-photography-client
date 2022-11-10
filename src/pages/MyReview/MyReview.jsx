@@ -29,6 +29,7 @@ const MyReview = () => {
     }
   }, [updateModal]);
 
+  // fetch data for speficific user
   useEffect(() => {
     fetch(
       `https://service-review-server-abid.vercel.app/myreview?email=${user?.email}`,
@@ -47,6 +48,7 @@ const MyReview = () => {
       .then((data) => setMyreviews(data));
   }, [logOut, user?.email]);
 
+  //delete review
   const handleDelete = (id) => {
     const deleteConfirm = window.confirm("Are You Sure To Delete Your Review?");
     if (deleteConfirm) {
@@ -73,7 +75,7 @@ const MyReview = () => {
     e.preventDefault();
     const form = e.target;
     const review = form.review.value;
-
+    //update review
     fetch(
       `https://service-review-server-abid.vercel.app/myreview/${updateModal}`,
       {

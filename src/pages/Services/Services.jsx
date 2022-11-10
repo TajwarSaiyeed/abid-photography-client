@@ -9,6 +9,7 @@ const Services = () => {
   const { loading } = useContext(AuthContext);
   const [addbyuser, setAddbyuser] = useState([]);
   useTitle("Services");
+  // all services
   useEffect(() => {
     fetch("https://service-review-server-abid.vercel.app/services?id=")
       .then((res) => res.json())
@@ -17,6 +18,7 @@ const Services = () => {
       });
   }, [addbyuser]);
 
+  // service which add by user
   useEffect(() => {
     const setByUser = allService.filter((service) => service["email"]);
     if (setByUser) {
