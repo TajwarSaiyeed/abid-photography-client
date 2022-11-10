@@ -113,7 +113,7 @@ const MyReview = () => {
       <div
         className={`${
           myreviews.length > 0
-            ? "lg:grid-cols-3"
+            ? "lg:grid-cols-3 md:grid-cols-2"
             : "justify-items-center lg:grid-cols-1"
         } grid grid-cols-1 gap-3 my-5 `}
       >

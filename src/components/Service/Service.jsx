@@ -42,7 +42,7 @@ const Service = ({ service }) => {
             </span>
             <Link
               to={`/service/${_id}`}
-              className="btn btn-primary w-28 lg:w-40"
+              className="btn btn-primary w-28 md:w-36 lg:w-40"
             >
               View Details
             </Link>

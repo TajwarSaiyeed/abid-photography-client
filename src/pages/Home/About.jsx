@@ -3,7 +3,7 @@ import photographer from "../../assets/photographer.jpg";
 
 const About = () => {
   return (
-    <div className="flex flex-col lg:flex-row gap-3 p-5 lg:p-20 bg-slate-200 min-h-96 rounded-2xl">
+    <div className="flex flex-col lg:flex-row gap-3 p-5 md:p-14 lg:p-20 bg-slate-200 min-h-96 rounded-2xl">
       <div className="w-full lg:w-2/4">
         <img className="w-full h-full rounded-2xl" src={photographer} alt="" />
       </div>
