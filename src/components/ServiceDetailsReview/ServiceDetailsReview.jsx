@@ -13,7 +13,12 @@ const ServiceDetailsReview = () => {
   useEffect(() => {
     fetch(`https://service-review-server-abid.vercel.app/review/${_id}`)
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => {
+        setReviews(data.sort(byDate));
+        function byDate(a, b) {
+          return new Date(b.date).valueOf() - new Date(a.date).valueOf();
+        }
+      });
   }, [_id, reviews]);
 
   const handleReview = (e) => {
@@ -22,7 +27,12 @@ const ServiceDetailsReview = () => {
     const username = form.username.value;
     const email = form.email.value;
     const reviewMessage = form.review.value;
-
+    const date = new Date();
+    const current_date =
+      date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+    const current_time =
+      date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+    const date_time = current_date + " " + current_time;
     const review = {
       username,
       email,
@@ -31,8 +41,9 @@ const ServiceDetailsReview = () => {
       serviceTitle: name,
       servicePicture: picture,
       userImage: user.photoURL,
+      date: date_time,
     };
-
+    console.log(review);
     fetch("https://service-review-server-abid.vercel.app/reviews", {
       method: "POST",
       headers: {
