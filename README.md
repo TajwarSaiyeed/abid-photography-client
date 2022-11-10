@@ -32,8 +32,6 @@ By using this map you can find me
 
 On home there is a contact me option.
 Complete the form and send the message to admin
-
-
 # Authentication System
 
 There is two authentication system. one is email password and another is google authtication.
