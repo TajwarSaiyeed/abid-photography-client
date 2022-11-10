@@ -9,7 +9,6 @@ const ServiceDetailsReview = () => {
 
   const { _id, name, picture, description, price } = service;
   const { user } = useContext(AuthContext);
-
   useEffect(() => {
     fetch(`https://service-review-server-abid.vercel.app/review/${_id}`)
       .then((res) => res.json())
@@ -67,7 +66,7 @@ const ServiceDetailsReview = () => {
         <div
           className="hero min-h-screen rounded-tl-2xl rounded-tr-2xl lg:rounded-tl-3xl overflow-hidden"
           style={{
-            backgroundImage: `url(${picture})`,
+            backgroundImage: `url("${picture}")`,
           }}
         >
           <div className="hero-overlay bg-opacity-60"></div>
